@@ -13,7 +13,7 @@ function setup() {
   //change the background color if you want to see the size of the canvas
   background(255)
 
-  //Delete this if you want to watch the code animate
+  //The second argument (i<350) determines how many squares you'll get. We made prints of 60, 350, and 3000. Delete this if you want to watch the code animate
   for (i=0; i<350; i++) {
     loop();
     noLoop();
