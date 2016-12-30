@@ -12,3 +12,5 @@ For our first project, we experimented with procedural generation of squares on 
 For the final product we decided on a triptych with the canvas at 60 loops, 350 loops, and 3000 loops. We tried many combinations before selecting the series to hang on our wall (seed 156).
 
 ![Seed 156 output for Squares Series at 60, 350, 3000 iterations](img/squaresMergedLowRes.jpg)
+
+The code for this project is in the [p5js](2016%20Transparent%20Squares) and licensed under the MIT License. That means you can use and remix the code as long as you give us credit.
