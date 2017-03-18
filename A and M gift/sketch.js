@@ -3,21 +3,30 @@ function setup() {
   sizeMultiplier = 1;
   createCanvas(1000 * sizeMultiplier, 1000 * sizeMultiplier);
 
+  //change the background color if you want to see the size of the canvas
+  background(250)
+
   //Use random seeds to generate different versions of the art, then pick the one you like best and lock it in
 
-  //ourSeed = 156 //round(random(10000))
-  //randomSeed(ourSeed);
+  ourSeed = 7337//round(random(10000))
+  randomSeed(ourSeed);
+  noiseSeed(ourSeed);
 
   //Uncomment the following line to display the seed number on the canvas
-  //text(ourSeed, 900 * sizeMultiplier, 900  * sizeMultiplier, 100, 100)
+  fill(0)
+  textSize(30)
+  text(ourSeed, 10, 10, 300, 300)
 
 
   //If you want to see the art grow over time, play with the frameRate otherwise give an iteration number
-  animated = false;
+  animated = true;
 
-  iterationNumber = 0;
+  iterationNumber = 1657;
+  strokeWeight(3);
+  increment = .005;
+  bezierMagnifier = 1;
 
-  frameRate(5)
+  frameRate(100)
 
   if(animated) {
     iterationNumber = 0;
@@ -28,8 +37,13 @@ function setup() {
   }
 
 
-  //change the background color if you want to see the size of the canvas
-  background(255)
+  stroke(0, 18);
+
+  noFill();
+  t = 0;
+
+
+
 
 
 // Loops if not animated
@@ -41,7 +55,44 @@ function setup() {
 }
 
 function draw() {
-  //Get random X and Y coordinates
+
+  redValue = map(noise(t),0,1,0,255)
+  greenValue = map(noise(t+35),0,1,0,255)
+  blueValue = map(noise(t+60),0,1,0,255)
+
+  stroke(0, greenValue, blueValue, 18);
+
+  var x1 = (width * noise(t + 15) * bezierMagnifier);
+  var x2 = (width * noise(t + 25) * bezierMagnifier);
+  var x3 = (width * noise(t + 35) * bezierMagnifier);
+  var x4 = (width * noise(t + 45) * bezierMagnifier);
+  var y1 = (height * noise(t + 55) * bezierMagnifier);
+  var y2 = (height * noise(t + 65) * bezierMagnifier);
+  var y3 = (height * noise(t + 75) * bezierMagnifier);
+  var y4 = (height * noise(t + 85) * bezierMagnifier);
+
+  bezier(x1, y1, x2, y2, x3, y3, x4, y4);
+
+  t += increment;
+
+  noStroke()
+  fill(250)
+  rect(10,50,300,50)
+
+  fill(0)
+  text(frameCount, 10, 50, 300, 300)
+  stroke(0,18)
+  noFill()
+
+
+
+  // clear the background every 500 frames using mod (%) operator
+  /*if (frameCount % 500 == 0) {
+  background(255);
+  }*/
+}
+
+/*  //Get random X and Y coordinates
   randomX = random(0 * sizeMultiplier,500 * sizeMultiplier)
   randomY = random(0 * sizeMultiplier,500 * sizeMultiplier)
 
@@ -68,7 +119,7 @@ function draw() {
   rect(randomX,randomY, shapeSide,shapeSide)
 
 }
-
+*/
 //Saves the output as a png when you click the mouse
 /*
 function mouseClicked() {
